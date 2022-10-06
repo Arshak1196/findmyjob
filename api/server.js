@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { connectDB } from './config/db.js'
+import cors from 'cors'
 
 const app = express()
 dotenv.config()
@@ -14,6 +15,7 @@ import adminRouter from './routes/admin.js'
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(cors())
 
 app.use('/', userRouter)
 app.use('/admin', adminRouter)

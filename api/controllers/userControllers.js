@@ -28,7 +28,7 @@ export const userRegister = async (req, res, next) => {
         await newUser.save();
         if (newUser) {
             res.status(201).json({
-                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile
+                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile,token: generateToken(user._id)
             })
         } else {
             return next(createError(400, "Invalid User data"));
@@ -44,7 +44,6 @@ export const userRegister = async (req, res, next) => {
 //@desc    User login
 export const userLogin = async (req, res, next) => {
     const { email, password } = req.body
-
     //Check for user by email
     const user = await User.findOne({ email })
 

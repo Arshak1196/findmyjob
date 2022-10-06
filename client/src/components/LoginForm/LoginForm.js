@@ -1,12 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Grid, TextField } from '@mui/material';
+import {useDispatch, useSelector} from 'react-redux'
 import './LoginForm.css'
+import {login} from '../../redux/auth/authActions'
 
 function LoginForm() {
+    const dispatch = useDispatch()
+    const loading = useSelector((state)=>state.auth.loading)
+    console.log(loading)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        console.log(data)
+        dispatch(login(data))
     }
     return (
         <>
@@ -18,10 +23,10 @@ function LoginForm() {
                             label="Email"
                             fullWidth
                             className='loginInput'
-                            {...register("name", { required: true, pattern: /^[A-Za-z]+$/, })}
+                            {...register("email", { required: true, pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/, })}
                         />
-                        {errors.name?.type === 'required' && <p className="required-mark">Name is required</p>}
-                        {errors.name?.type === 'pattern' && <p className="required-mark">Invalid Format</p>}
+                        {errors.email?.type === 'required' && <p className="required-mark">Name is required</p>}
+                        {errors.email?.type === 'pattern' && <p className="required-mark">Invalid Format</p>}
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
