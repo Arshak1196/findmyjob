@@ -2,6 +2,7 @@ import { Grid, Link, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import LoginForm from '../LoginForm/LoginForm'
+import {login} from '../../redux/auth/authActions'
 import './LoginRight.css'
 
 function LoginRight() {
@@ -9,9 +10,9 @@ function LoginRight() {
   return (
     <Grid container alignItems="center" justifyContent="center" minHeight="100vh" direction="column">
       <h1>Login to continue</h1>
-      <Grid className='loginForm' direction='column' >
+      <Grid  className='loginForm' >
         <Grid container justifyItems='center' alignItems='center' direction='column'>
-          <LoginForm />
+          <LoginForm login={login} />
           <Typography
             variant='p'
             style={{ 'margin': '20px' }} >

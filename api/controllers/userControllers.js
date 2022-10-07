@@ -9,7 +9,6 @@ import { createError } from '../middlewares/error.js'
 //@desc    Authenticate a user
 export const userRegister = async (req, res, next) => {
     try {
-
         //Check if user exists
         const userExists = await User.findOne({ email: req.body.email })
         if (userExists) {
@@ -28,12 +27,11 @@ export const userRegister = async (req, res, next) => {
         await newUser.save();
         if (newUser) {
             res.status(201).json({
-                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile,token: generateToken(user._id)
+                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile,token: generateToken(newUser._id)
             })
         } else {
             return next(createError(400, "Invalid User data"));
         }
-        res.status(200).send("User has been created.");
     } catch (error) {
         next(error)
     }

@@ -3,7 +3,7 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './authTypes'
 const INITIAL_STATE = {
     user: null,
     loading: false,
-    error: ''
+    error: null
 }
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -14,24 +14,24 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 loading: true
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem("profile",JSON.stringify({...action?.data}))
+            localStorage.setItem("profile",JSON.stringify({...action?.payload}))
             return {
                 ...state,
                 loading: false,
-                user: action.payload
+                user: action.payload,
+                error:null
             }
         case LOGIN_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.payload,
             }
         case LOGOUT:
             localStorage.clear()
             return {
-                user: [],
-                loading: false,
-                error: ''
+                user: null,
+                loading: false
             }
         default:
             return state;

@@ -10,12 +10,12 @@ function User() {
     return (
         <>
             <Routes>
-                <Route element={<NotLoggedInUser />}>
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/register' element={<Register />} />
-                </Route>
-                <Route element={<LoggedInUser />} >
-                    <Route path='/' element={<Home />} />
+                <Route element={<NotLoggedInUser/>} >
+                    <Route path='/login' element={<Login/>} />
+                    <Route path='/register' element={<Register/>} />
+                </Route >
+                <Route element={<LoggedInUser/>} >
+                    <Route exact path='/' element={<Home/>} />
                 </Route>
             </Routes>
         </>

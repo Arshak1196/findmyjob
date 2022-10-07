@@ -32,21 +32,32 @@ export const logout = () => {
     }
 }
 
-
-
-export const login = (formData) => async(dispatch)=> {
-    dispatch(loginStart())
-    try{
-        const user=await AuthAPI.login(formData)
-        console.log(user.data)
+export const signup = (formData) => async (dispatch) => {
+    dispatch(loginStart)
+    try {
+        const user = await AuthAPI.register(formData)
         dispatch(loginSuccess(user.data))
-    }catch(error){
+    } catch (error) {
         console.log(error)
-        dispatch(loginFailure(error))
+        dispatch(loginFailure(error.response.data.message))
     }
 }
 
-export const logOut = () => async(dispatch) =>{
+
+
+export const login = (formData) => async (dispatch) => {
+    dispatch(loginStart())
+    try {
+        const user = await AuthAPI.login(formData)
+        console.log(user.data)
+        dispatch(loginSuccess(user.data))
+    } catch (error) {
+        console.log(error)
+        dispatch(loginFailure(error.response.data.message))
+    }
+}
+
+export const logOut = () => async (dispatch) => {
     dispatch(logout())
 }
 

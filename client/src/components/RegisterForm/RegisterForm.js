@@ -1,12 +1,15 @@
 import React from 'react'
 import { Button, Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import {signup} from '../../redux/auth/authActions'
 import './RegisterForm.css'
 
 function RegisterForm() {
+    const dispatch = useDispatch()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        console.log(data)
+        dispatch(signup(data))
     }
     return (
         <>

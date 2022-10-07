@@ -1,17 +1,18 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import NavBar from '../../components/NavBar/NavBar'
+import UserSidebar from '../../components/UserSidebar/UserSidebar'
 
 function Home() {
   return (
-    <Grid container direction='row'> 
-      <Grid  container> 
-        <NavBar />
-      </Grid>
-      <Grid container direction='coloumn'>
-        <Grid md={3} style={{'minHeight':'120vh'}}>profile</Grid>
-        <Grid md={7}>home</Grid>
-        <Grid md={2}>footer</Grid>
+    <Grid container style={{ backgroundColor: '#f3f3f3' }}>
+      <NavBar />
+      <Grid container >
+        <Grid item md={3}>
+          <UserSidebar />
+        </Grid>
+        <Grid item md={7}>home</Grid>
+        <Grid item md={2}>footer</Grid>
       </Grid>
     </Grid>
   )

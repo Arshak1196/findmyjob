@@ -1,15 +1,14 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import {  useForm } from 'react-hook-form'
 import { Button, Grid, TextField } from '@mui/material';
 import {useDispatch, useSelector} from 'react-redux'
 import './LoginForm.css'
-import {login} from '../../redux/auth/authActions'
 
-function LoginForm() {
+function LoginForm({login}) {
     const dispatch = useDispatch()
-    const loading = useSelector((state)=>state.auth.loading)
-    console.log(loading)
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const err=useSelector((state)=>state.auth.error)
+    console.log(err)
     const onSubmit = (data) => {
         dispatch(login(data))
     }
