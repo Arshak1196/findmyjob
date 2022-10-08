@@ -1,0 +1,10 @@
+.addPost{
+    border-radius: 8px;
+    padding: 2rem 2rem 1rem 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.postButton{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,21 @@
+.bgcWhite{
+    background-color: #ffffff;
+}
+
+.pmryBg{
+    background-color: #6B80C8;
+}
+
+.pmry{
+    color: #6B80C8;
+}
+
+.pmry-txt{
+    color:#354B98;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.required-mark{
+    color:rgb(255, 0, 0)
+}

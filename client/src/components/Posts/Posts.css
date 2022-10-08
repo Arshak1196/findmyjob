@@ -1,0 +1,19 @@
+.postContainer{
+    border-radius: 8px;
+    margin: 1rem 0 1rem 0;
+    padding: 1.5rem;
+}
+
+.imageGrid{
+    padding-right: 2rem;
+}
+
+.postuserImage{
+    border-radius: 50%;
+    width:3.5rem
+}
+
+.time-txt{
+    color: rgba(53, 75, 152, 0.61);
+    padding-top: 0.2rem;
+}

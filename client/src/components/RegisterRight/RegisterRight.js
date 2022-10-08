@@ -8,7 +8,7 @@ function RegisterRight() {
   return (
     <Grid container alignItems="center" justifyContent="center" minHeight="100vh" direction="column">
       <h1>Register</h1>
-      <Grid className='loginForm' direction='column' >
+      <Grid className='loginForm' >
         <Grid container justifyItems='center' alignItems='center' direction='column'>
           <RegisterForm />
           <Typography

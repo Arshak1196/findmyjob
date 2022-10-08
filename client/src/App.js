@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import Admin from './routes/Admin';
 import User from './routes/User';
+import './App.css'
 
 function App() {
   return (

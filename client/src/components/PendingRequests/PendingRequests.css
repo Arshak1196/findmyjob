@@ -1,0 +1,25 @@
+.pendingRequests{
+    margin-top: 3rem;
+}
+
+.heading{
+    text-align: left;
+    font-weight: 700;
+    color: #354B98;
+}
+
+.requestBox{
+    padding: 1rem 0 1rem 1rem;
+    margin-bottom: 1rem;
+    background-color: rgba(53, 75, 152, 0.29);
+    border-radius: 8px;
+}
+
+.request-image{
+    width: 4rem;
+    border-radius: 50%;
+}
+
+.requestDetails{
+    padding-left: 1rem;
+}
