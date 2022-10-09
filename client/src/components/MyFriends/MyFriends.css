@@ -1,0 +1,18 @@
+.postContainer{
+    border-radius: 8px;
+    margin: 1rem 0 1rem 0;
+    padding: 1.5rem;
+}
+
+.friend-container{
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    margin-top: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.user-photo{
+    border-radius: 50%;
+    width: 5rem;
+}
+

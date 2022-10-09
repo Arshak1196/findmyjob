@@ -5,6 +5,7 @@ import Login from '../pages/user/Login'
 import Register from '../pages/user/Register'
 import NotLoggedInUser from './NotLoggedInUser'
 import LoggedInUser from './LoggedInUser'
+import Connection from '../pages/user/Connection'
 
 function User() {
     return (
@@ -16,6 +17,8 @@ function User() {
                 </Route >
                 <Route element={<LoggedInUser/>} >
                     <Route exact path='/' element={<Home/>} />
+                    <Route path='/connections' element={<Connection page='friends'/>} />
+                    <Route path='/connections/requests' element={<Connection page='requests'/>} />
                 </Route>
             </Routes>
         </>

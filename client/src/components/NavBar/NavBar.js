@@ -18,10 +18,12 @@ import WorkIcon from '@mui/icons-material/Work';
 import { Grid } from '@mui/material';
 import { logOut } from '../../redux/auth/authActions'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const pages = [{ name: 'CONNECTIONS', icon: <GroupIcon /> }, { name: 'MESSAGE', icon: <ChatBubbleIcon /> }, { name: 'JOB', icon: <WorkIcon /> }]
+const pages = [{ name: 'CONNECTIONS', icon: <GroupIcon/>,action:'/connections' }, { name: 'MESSAGE', icon: <ChatBubbleIcon /> }, { name: 'JOB', icon: <WorkIcon /> }]
 
 const NavBar = () => {
+    const navigate=useNavigate()
     const dispatch = useDispatch()
     const userName = useSelector((state) => state.auth.user.name)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -53,7 +55,7 @@ const NavBar = () => {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="/"
+                            onClick={()=>navigate('/')}
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -124,7 +126,8 @@ const NavBar = () => {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, px: 30, mr: 21 }}>
                             {pages.map((page) => (
-                                <Grid container direction='column' justifyContent='center' alignItems='center' sx={{ my: 1 }} key={page.name}>
+                                <Grid container direction='column' justifyContent='center' alignItems='center' 
+                                sx={{ my: 1 }} key={page.name} onClick={()=>navigate(page.action)}>
                                     {page.icon}
                                     <Button
                                         onClick={handleCloseNavMenu}

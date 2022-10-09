@@ -11,7 +11,7 @@ function Home() {
       <NavBar />
       <Grid container >
         <Grid item md={3} sx={{width:'100%'}}>
-          <UserSidebar />
+          <UserSidebar page={'home'}/>
         </Grid>
         <Grid item md={7}>
           <PostSide />
