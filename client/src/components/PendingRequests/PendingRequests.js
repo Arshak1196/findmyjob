@@ -5,7 +5,7 @@ import image from '../../images/userAvatar.png'
 
 function PendingRequests() {
   return (
-    <Grid fixed className='pendingRequests'>
+    <Grid  className='pendingRequests'>
         <p className='heading'>Pending Requests</p>
         
             <Grid container direction='row' className='requestBox'>

@@ -17,3 +17,16 @@
     color: rgba(53, 75, 152, 0.61);
     padding-top: 0.2rem;
 }
+
+.post-image{
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.post-caption{
+    margin-bottom: 1rem;
+}
+
+.post-button{
+    width: 50%;
+}
