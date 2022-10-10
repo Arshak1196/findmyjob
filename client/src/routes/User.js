@@ -6,6 +6,7 @@ import Register from '../pages/user/Register'
 import NotLoggedInUser from './NotLoggedInUser'
 import LoggedInUser from './LoggedInUser'
 import Connection from '../pages/user/Connection'
+import Jobs from '../pages/user/Jobs'
 
 function User() {
     return (
@@ -19,6 +20,7 @@ function User() {
                     <Route exact path='/' element={<Home/>} />
                     <Route path='/connections' element={<Connection page='friends'/>} />
                     <Route path='/connections/requests' element={<Connection page='requests'/>} />
+                    <Route path='/jobs' element={<Jobs/>}/>
                 </Route>
             </Routes>
         </>
