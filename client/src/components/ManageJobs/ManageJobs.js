@@ -12,10 +12,12 @@ function ManageJobs() {
     const [open, setOpen] = useState(true);
     const handleClick = () => {
         setOpen(!open);
+        navigate('/jobs')
     };
     const [open1, setOpen1] = useState(false);
     const handleClick1 = () => {
         setOpen1(!open1);
+        navigate('/post-job')
     };
     return (
         <div className='connection'>
@@ -33,7 +35,7 @@ function ManageJobs() {
                 </ListItemButton>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemButton sx={{ pl: 4 }} onClick={()=>{navigate('/jobs')}}>
                             <ListItemText primary="Search" />
                         </ListItemButton>
                         <ListItemButton sx={{ pl: 4 }}>
@@ -54,7 +56,7 @@ function ManageJobs() {
                 </ListItemButton>
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemButton sx={{ pl: 4 }} onClick={()=>{navigate('/post-job')}}>
                             <ListItemText primary="Post new Job" />
                         </ListItemButton>
                         <ListItemButton sx={{ pl: 4 }}>

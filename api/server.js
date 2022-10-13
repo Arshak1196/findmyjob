@@ -37,3 +37,10 @@ app.listen(port, () => {
     connectDB()
     console.log(`Server started on port ${port}`)
 });
+
+
+const array=[1,2,3,4,5]
+const largest = array.reduce ((accumulator, currentValue) => {
+    return (accumulator > currentValue ? accumulator : currentValue);
+  })
+console.log(largest)

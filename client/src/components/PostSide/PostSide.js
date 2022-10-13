@@ -5,7 +5,7 @@ import Posts from '../Posts/Posts'
 
 function PostSide() {
     return (
-        <Container sx={{ pt: '2.5rem',overflowY:'scroll',height:'90.3vh'}}>
+        <Container  sx={{ pt: '2.5rem',overflowY:'scroll',height:'90.3vh'}}>
             <AddPost/>
             <hr />
             <Posts/>

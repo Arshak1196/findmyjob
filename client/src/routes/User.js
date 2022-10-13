@@ -20,7 +20,8 @@ function User() {
                     <Route exact path='/' element={<Home/>} />
                     <Route path='/connections' element={<Connection page='friends'/>} />
                     <Route path='/connections/requests' element={<Connection page='requests'/>} />
-                    <Route path='/jobs' element={<Jobs/>}/>
+                    <Route path='/jobs' element={<Jobs section='search'/>}/>
+                    <Route path='/post-job' element={<Jobs section='post'/>}/>
                 </Route>
             </Routes>
         </>
