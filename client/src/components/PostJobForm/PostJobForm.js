@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux';
+import { postNewJob } from '../../redux/postJob/postJobActions';
 import './PostJobForm.css'
 
 const steps = ['Provide company Details', 'Provide Job Details'];
@@ -17,8 +19,15 @@ export default function PostJobForm() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [jobFor, setJobFor] = React.useState('Fresher');
   const [jobType, setJobType] = React.useState('Full Time')
+  const dispatch = useDispatch()
 
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const user = useSelector((state) => state.auth.user)
+
+  const { register, formState: { errors }, handleSubmit,reset } = useForm({
+    defaultValues:{
+      userId:user._id
+    }
+  });
 
   const handleChange = (event) => {
     setJobFor(event.target.value);
@@ -32,7 +41,9 @@ export default function PostJobForm() {
     data.jobFor = jobFor
     data.jobType = jobType
     console.log(data)
+    dispatch(postNewJob(data))
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    reset()
   }
 
   const handleNext = (data) => {
@@ -71,12 +82,13 @@ export default function PostJobForm() {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+          <Typography sx={{ mt: 5, mb: 1, textAlign: 'center' }}>
+            Your Job is posted succesfully
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset}>VIEW MY JOBS</Button>
+            <Button onClick={handleReset}>POST NEW JOB</Button>
           </Box>
         </React.Fragment>
       ) : (
