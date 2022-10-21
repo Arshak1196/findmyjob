@@ -21,10 +21,10 @@ const fetchFailure = error => {
     }
 }
 
-export const fetchJobs = (id) => async (dispatch) => {
+export const fetchJobs = (token) => async (dispatch) => {
     dispatch(fetchStart())
     try {
-        const jobs = await JobsAPI.fetchPostedJobs(id)
+        const jobs = await JobsAPI.fetchPostedJobs(token)
         dispatch(fetchSuccess(jobs.data))
     } catch (error) {
         console.log(error)

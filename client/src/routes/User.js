@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/user/Home'
 import Login from '../pages/user/Login'
@@ -7,8 +7,18 @@ import NotLoggedInUser from './NotLoggedInUser'
 import LoggedInUser from './LoggedInUser'
 import Connection from '../pages/user/Connection'
 import Jobs from '../pages/user/Jobs'
+import { useDispatch, useSelector } from 'react-redux'
+import {fetchJobs} from '../redux/jobs/jobsActions'
 
 function User() {
+    const dispatch = useDispatch()
+  const {user} = useSelector((state) => state.auth)
+  const {loading} = useSelector((state)=>state.postJob)
+    useEffect(() => {
+        if(user){
+            dispatch(fetchJobs(user.token))
+        }
+    },[loading,user])
     return (
         <>
             <Routes>

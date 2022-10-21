@@ -23,6 +23,7 @@ const jobsReducer = (state = INITIAL_STATE, action) => {
         case FETCH_JOB_FAILURE:
             return {
                 ...state,
+                jobs:[],
                 loading: false,
                 error: action.payload
             }
