@@ -68,7 +68,7 @@ const JobSchema = new Schema({
     },
     isOpen:{
         type:Boolean,
-        default:false
+        default:true
     },
     reportMessages:[{
         message:{

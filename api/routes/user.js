@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 import { protect } from '../middlewares/authMiddleware.js';
 import {  userLogin, userRegister } from '../controllers/userControllers.js';
-import { postNewJob } from '../controllers/jobControllers.js';
+import { getPostedJobs, postNewJob } from '../controllers/jobControllers.js';
 
 //test
 router.get('/test',protect,(req,res)=>{
@@ -13,12 +13,13 @@ router.get('/test',protect,(req,res)=>{
 router.post('/register',userRegister)
 
 //userLogin
-router.post('/login', userLogin)  
+router.post('/login', userLogin) 
 
 //postJob
-router.post('/postjob',  postNewJob)
+router.post('/postjob',postNewJob)
 
-//
+//postedJobs
+router.get('/postedjobs/:id',getPostedJobs)
 
 
 

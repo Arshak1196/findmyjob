@@ -4,6 +4,7 @@ import React from 'react'
 import Footer from '../../components/Footer/Footer'
 import JobSearch from '../../components/JobSearch/JobSearch'
 import NavBar from '../../components/NavBar/NavBar'
+import PostedJobs from '../../components/PostedJobs/PostedJobs'
 import PostJob from '../../components/PostJob/PostJob'
 import UserSidebar from '../../components/UserSidebar/UserSidebar'
 
@@ -18,7 +19,8 @@ function Jobs({section}) {
         <Grid item md={7}>
           <Container sx={{ pt: '2.5rem', overflowY: 'scroll', height: '90.3vh' }}>
             {(section === 'search') && <JobSearch />}
-            {(section === 'post') && <PostJob />}
+            {(section === 'post') && <PostJob />} 
+            {(section === 'posted') && < PostedJobs/> }
             
           </Container>
         </Grid>

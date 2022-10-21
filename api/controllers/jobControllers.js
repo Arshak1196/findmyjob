@@ -19,3 +19,12 @@ export const postNewJob = async (req, res, next) => {
         next(error)
     }
 }
+
+export const getPostedJobs = async (req,res,next) =>{
+    try {
+        const jobs = await Job.find({userId:req.params.id})
+        res.status(200).json(jobs)
+    } catch (error) {
+        next(error)
+    }
+}
