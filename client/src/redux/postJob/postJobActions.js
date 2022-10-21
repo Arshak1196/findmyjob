@@ -21,10 +21,10 @@ const postJobFailure = error => {
     }
 }
 
-export const postNewJob =(formData) => async (dispatch) => {
+export const postNewJob =(formData,token) => async (dispatch) => {
     dispatch(postJobStart())
     try {
-        await JobAPI.createJob(formData)
+        await JobAPI.createJob(formData,token)
         dispatch(postJobSuccess())
     } catch (error) {
         console.log(error)

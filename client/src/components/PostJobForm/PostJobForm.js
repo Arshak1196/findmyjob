@@ -23,11 +23,7 @@ export default function PostJobForm() {
 
   const user = useSelector((state) => state.auth.user)
 
-  const { register, formState: { errors }, handleSubmit,reset } = useForm({
-    defaultValues:{
-      userId:user._id
-    }
-  });
+  const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
   const handleChange = (event) => {
     setJobFor(event.target.value);
@@ -41,7 +37,7 @@ export default function PostJobForm() {
     data.jobFor = jobFor
     data.jobType = jobType
     console.log(data)
-    dispatch(postNewJob(data))
+    dispatch(postNewJob(data,user.token))
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     reset()
   }

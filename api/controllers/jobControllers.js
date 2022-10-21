@@ -29,7 +29,9 @@ export const postNewJob = async (req, res, next) => {
 
     try {
         //Create Job
-        const newJob = new Job(req.body)
+        const job =req.body;
+        job.userId = req.user._id;
+        const newJob = new Job(job)
         await newJob.save()
         if (newJob) {
             res.status(200).json({ success: true })
