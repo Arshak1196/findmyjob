@@ -1,0 +1,13 @@
+.addPost{
+    border-radius: 8px;
+    padding: 2rem 2rem 1rem 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-image{
+    width: 100%;
+}
+
+.preview{
+    margin-top: 1.4rem;
+}

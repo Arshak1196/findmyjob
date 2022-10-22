@@ -15,7 +15,11 @@ export const protect = async (req, res, next) => {
 
             //Get User from the token
             req.user = await User.findById(decoded.id).select('-password')  
-            next()
+            if(req.user){
+                next()
+            }else{
+                return next(createError(401,'Invalid User'))
+            }
         } catch (error) {
             console.log(error)
             return next(createError(401,'Not authorized'))

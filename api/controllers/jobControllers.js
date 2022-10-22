@@ -13,7 +13,8 @@ export const searchJobs = async (req, res, next) => {
                 { isBlocked: false },
                 {
                     designation: { $regex: designation, $options: 'i' }
-                }
+                },
+                { userId: {$nin:[req.user?._id]}}
             ]
         })
         res.json(jobs)

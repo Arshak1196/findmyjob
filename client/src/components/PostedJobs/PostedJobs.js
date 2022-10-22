@@ -19,7 +19,7 @@ function PostedJobs() {
             selector: (row) => row.designation,
         },
         {
-            name: " No .of Applicants",
+            name: "Applicants",
             selector: (row) => row.applicationStatus.length,
         },
         {
