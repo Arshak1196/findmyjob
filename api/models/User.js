@@ -20,10 +20,14 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Password is required']
     },
+    savedJobs:[
+        {type: mongoose.ObjectId}
+    ],
     isAdmin: {
         type: Boolean,
         default: false
     },
+
 
 }, { timestamps: true })
 

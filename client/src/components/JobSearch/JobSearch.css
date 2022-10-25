@@ -11,3 +11,15 @@
 .preview{
     margin-top: 1.4rem;
 }
+
+.companyLogo{
+    width: 60%;
+}
+
+.designation{
+    text-transform: uppercase;
+}
+
+.buttonside{
+    text-align: end;
+}

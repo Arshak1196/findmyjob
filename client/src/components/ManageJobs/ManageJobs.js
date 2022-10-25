@@ -37,7 +37,7 @@ function ManageJobs() {
                             <ListItemText primary="Search" />
                         </ListItemButton>
                         <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemText primary="Saved Jobs" />
+                            <ListItemText primary="Saved Jobs" onClick={()=>{navigate('/jobs/saved')}}/>
                         </ListItemButton>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemText primary="View My Applications" />

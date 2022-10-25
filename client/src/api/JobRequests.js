@@ -17,3 +17,9 @@ export const searchJobs = (key, token) => axios.post('jobs/search', key, {
         Authorization: `Bearer ${token}`
     }
 })
+
+export const saveJobs = (id, token) => axios.post('jobs/save', {jobId:id}, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})

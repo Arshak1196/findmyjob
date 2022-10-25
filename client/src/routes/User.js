@@ -31,6 +31,7 @@ function User() {
                     <Route path='/connections' element={<Connection page='friends'/>} />
                     <Route path='/connections/requests' element={<Connection page='requests'/>} />
                     <Route path='/jobs' element={<Jobs section='search'/>}/>
+                    <Route path='/jobs/saved' element={<Jobs section='save'/>}/>
                     <Route path='/post-job' element={<Jobs section='post'/>}/>
                     <Route path='/postedJobs' element={<Jobs section='posted'/>}/>
                 </Route>

@@ -1,11 +1,12 @@
 import { useReducer, useState } from 'react';
-import { Button, CircularProgress, Grid, InputAdornment, TextField } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
+import { Button, CircularProgress, InputAdornment, TextField } from '@mui/material'
 import { searchJobsReducer } from '../../functions/reducers';
 import { JOB_SEARCH_FAILURE, JOB_SEARCH_START, JOB_SEARCH_SUCCESS } from '../../functions/types';
 import * as JobsAPI from '../../api/JobRequests'
-import './JobSearch.css'
 import { useSelector } from 'react-redux';
+import SearchIcon from '@mui/icons-material/Search';
+import './JobSearch.css'
+import JobBox from '../JobBox/JobBox';
 
 
 function JobSearch() {
@@ -19,20 +20,20 @@ function JobSearch() {
       error: false
     }
   )
- 
+
 
   const jobSearch = async () => {
     const key = { designation: jobSearchTerm }
     dispatch({ type: JOB_SEARCH_START });
-      if (jobSearchTerm) {
-        try {
-          const result = await JobsAPI.searchJobs(key, user.token)
-          console.log(result)
-          dispatch({ type: JOB_SEARCH_SUCCESS, payload: result.data })
-        } catch (error) {
-          dispatch({ type: JOB_SEARCH_FAILURE, payload: error.response.data.message })
-        }
+    if (jobSearchTerm) {
+      try {
+        const result = await JobsAPI.searchJobs(key, user.token)
+        console.log(result)
+        dispatch({ type: JOB_SEARCH_SUCCESS, payload: result.data })
+      } catch (error) {
+        dispatch({ type: JOB_SEARCH_FAILURE, payload: error.response.data.message })
       }
+    }
   };
 
   return (
@@ -64,37 +65,31 @@ function JobSearch() {
         </Button>
       </div>
       <hr />
-      {!jobSearchTerm &&
-        <div className='bgcWhite addPost preview '>
-          <img className='search-image'
-            src='https://cdn.searchenginejournal.com/wp-content/uploads/2017/06/shutterstock_268688447.jpg' alt='search' />
-        </div>
-      }
-      {loading &&
-        <div className='bgcWhite addPost preview '>
 
+      {loading ?
+        <div className='bgcWhite addPost preview '>
           <h2>Loading...</h2>
           <CircularProgress />
         </div>
-      }
-      {jobSearchTerm &&
-        <>
+        : error ?
           <div className='bgcWhite addPost preview '>
-            {error &&
-              <>
-                <h2>Something went wrong</h2>
-              </>}
-            {(jobs) &&
-              <Grid>
-                {jobs.map((job) => {
-                  return (
-                    <p>{job.company}</p>
-                  )
-                })}
-              </Grid>}
+            <h2>Something went wrong</h2>
           </div>
-        </>
+          : jobs ?
+            <>
+              {jobs.map((job) => {
+                return (
+                  <JobBox key={job._id} job={job} />
+                )
+              })}
+            </>
+            : <div className='bgcWhite addPost preview '>
+              <img className='search-image'
+                src='https://cdn.searchenginejournal.com/wp-content/uploads/2017/06/shutterstock_268688447.jpg' alt='search' />
+            </div>
+
       }
+
     </>
   )
 }

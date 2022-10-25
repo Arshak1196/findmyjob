@@ -27,8 +27,9 @@ export const userRegister = async (req, res, next) => {
         await newUser.save();
         if (newUser) {
             res.status(201).json({
-                loggedin:true,
-                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile,token: generateToken(newUser._id)
+                loggedin: true,
+                _id: newUser._id, name: newUser.name, email: newUser.email, mobile: newUser.mobile,
+                savedJobs: newUser.savedJobs, token: generateToken(newUser._id)
             })
         } else {
             return next(createError(400, "Invalid User data"));
@@ -48,11 +49,12 @@ export const userLogin = async (req, res, next) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
-            loggedin:true,
+            loggedin: true,
             _id: user._id,
             name: user.name,
-            email: user.email, 
+            email: user.email,
             mobile: user.mobile,
+            savedJobs: user.savedJobs,
             token: generateToken(user._id)
         })
     } else {
