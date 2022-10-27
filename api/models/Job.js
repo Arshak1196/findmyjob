@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
     userId:{
-        type:mongoose.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
         required:true
     },
     company: {

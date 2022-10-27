@@ -24,8 +24,8 @@ function JobSearch() {
 
   const jobSearch = async () => {
     const key = { designation: jobSearchTerm }
-    dispatch({ type: JOB_SEARCH_START });
     if (jobSearchTerm) {
+      dispatch({ type: JOB_SEARCH_START });
       try {
         const result = await JobsAPI.searchJobs(key, user.token)
         console.log(result)
@@ -77,11 +77,16 @@ function JobSearch() {
           </div>
           : jobs ?
             <>
-              {jobs.map((job) => {
-                return (
-                  <JobBox key={job._id} job={job} />
-                )
-              })}
+              {(jobs.length) ? <>
+                {jobs.map((job) => {
+                  return (
+                    <JobBox key={job._id} job={job} />
+                  )
+                })}
+              </> :
+                <div className='bgcWhite addPost preview '>
+                  <h2>No results found</h2>
+                </div>}
             </>
             : <div className='bgcWhite addPost preview '>
               <img className='search-image'

@@ -20,9 +20,10 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Password is required']
     },
-    savedJobs:[
-        {type: mongoose.ObjectId}
-    ],
+    savedJobs:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Job'
+    }],
     isAdmin: {
         type: Boolean,
         default: false

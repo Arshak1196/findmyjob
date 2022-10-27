@@ -33,7 +33,7 @@ export const saveJob = async (req,res,next)=>{
         const saved = await User.findOne({_id:req.user._id,savedJobs:jobId})
         if(saved){
             console.log('unsave')
-            const user = await User.updateOne({_id:req.user._id},{
+            await User.updateOne({_id:req.user._id},{
                 $pull:{
                     savedJobs:jobId
                 }
@@ -58,23 +58,10 @@ export const saveJob = async (req,res,next)=>{
 //@desc    Get Saved Jobs
 export const getSavedJobs = async (req,res,next) => {
     try {
-        let savedJobs = await User.aggregate([
-            {$match:{_id:req.user._id}},
-            {$unwind:'$savedJobs'},
-            {$project:{
-                savedJobs:'$savedJobs'
-            }},
-            {$lookup:{
-                from: 'Job',
-                localField: 'savedJobs',
-                foreignField: '_id',
-                as:'results'
-            }},
-            {$project:{_id:0,result:1}}
-        ])
-        
-        res.status(200).json(savedJobs)
+        let jobs = await User.findById(req.user._id).populate("savedJobs").select("savedJobs -_id")
+        res.status(200).json([...jobs.savedJobs])
     } catch (error) {
+        console.log(error)
         next(error)
     }
 }
