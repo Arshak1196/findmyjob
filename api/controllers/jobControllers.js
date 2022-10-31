@@ -1,5 +1,6 @@
 import Job from "../models/Job.js"
 import User from "../models/User.js"
+import {createError} from '../middlewares/error.js'
 
 
 //@route   POST /jobs/search
@@ -73,6 +74,37 @@ export const getJobDetails = async (req,res,next)=>{
         let job = await Job.findById(req.params.id)
         res.status(200).json(job)
     } catch (error) {
+        next(error)
+    }
+}
+
+//@route   POST /jobs/apply
+//@access  Private
+//@desc    Apply for Job
+export const applyForJob = async (req,res,next)=>{
+    const {jobId,...data}=req.body
+    try {
+        const job = await Job.findById(jobId)
+        if(!job){
+            return next(createError(400,"Invalid Job Id"))
+        }
+        const isApplied =await Job.find({_id:req.body.jobId,'applicationStatus.userId':req.user._id})
+        console.log(isApplied)
+        if(isApplied[0]){
+            return next(createError(400,"Already Applied for this Job"))
+        }else{
+            const details=data
+            details.userId=req.user._id
+            let update=await Job.findByIdAndUpdate(jobId,{
+                $push:{
+                    applicationStatus:details
+                }
+            })
+            res.status(200).json({applied:true})
+            
+        }
+    } catch (error) {
+        console.log(error)
         next(error)
     }
 }

@@ -27,7 +27,7 @@ const UploadToCloudinary = async(file,path,next)=>{
             (err,res)=>{
                 if(err){
                     removeTmp(file.tempFilePath);
-                    return next(createError(400,'Upload Image Failed'))
+                    return next(createError(400,'Upload File Failed'))
                 }
                 
                 resolve({
@@ -49,4 +49,5 @@ export const uploadImage = async(req,res,next)=>{
         next(error)
     }
 }
+
 

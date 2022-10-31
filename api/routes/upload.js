@@ -1,9 +1,15 @@
 import express from 'express'
+import { protect } from '../middlewares/authMiddleware.js';
 import { uploadImage } from '../controllers/uploadController.js'
-import { imageUpload } from '../middlewares/uploadMiddleware.js'
+import { imageUpload, pdfUpload } from '../middlewares/uploadMiddleware.js'
 const router = express.Router()
 
-router.post('/uploadimage',imageUpload,uploadImage)
+
+//upload image
+router.post('/uploadimage',protect,imageUpload,uploadImage)
+
+//upload pdf
+router.post('/uploadpdf',protect,pdfUpload,uploadImage)
  
 
 

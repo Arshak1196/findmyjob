@@ -31,7 +31,7 @@ function JobBox({ job }) {
             <div className='bgcWhite addPost preview'>
                 <Grid container direction='row'>
                     <Grid item md={2}>
-                        <img src={job.image?job.image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1Tt9_33HyVMm_ZakYQy-UgsLjE00biEArg&usqp=CAU'}
+                        <img src={job.image?job.image:process.env.REACT_APP_JOB_LOGO}
                             className='companyLogo' alt={job.company}></img>
                     </Grid>
                     <Grid item md={8}>

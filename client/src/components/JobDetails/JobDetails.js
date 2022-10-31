@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from '@mui/material'
+import { Button, CircularProgress, Dialog, Grid } from '@mui/material'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { toast } from 'react-toastify'
@@ -9,6 +9,7 @@ import * as JobsAPI from '../../api/JobRequests'
 import { fetchJobDetails } from '../../functions/reducers';
 import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
 import { FETCH_JOB_DETAIL_FAILURE, FETCH_JOB_DETAIL_START, FETCH_JOB_DETAIL_SUCCESS } from "../../functions/types";
+import JobApplyForm from "./JobApplyForm";
 import './JobDetails.css'
 
 
@@ -27,6 +28,8 @@ function JobDetails() {
     useEffect(() => {
         getDetails()
     }, [])
+ 
+    const isApplied = job?.applicationStatus.some(data=>data.userId===user._id)
 
     const getDetails = async () => {
         dispatch({ type: FETCH_JOB_DETAIL_START })
@@ -75,13 +78,12 @@ function JobDetails() {
         )
     } else if (job) {
         const date = new Date(job.createdAt).toDateString()
-        console.log(date)
         return (
             <div className='bgcWhite addPost details'>
                 <Grid container direction='column'>
                     <Grid container direction='row'>
                         <Grid item md={3}>
-                            <img  src={job.image?job.image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1Tt9_33HyVMm_ZakYQy-UgsLjE00biEArg&usqp=CAU'}
+                            <img src={job.image ? job.image : process.env.REACT_APP_JOB_LOGO}
                                 className='companyLogo' alt={job.company}></img>
                         </Grid>
                         <Grid item md={7}>
@@ -115,6 +117,7 @@ function JobDetails() {
                             Report
                         </Button>
                         <Button
+                            disabled={isApplied}
                             size='small'
                             variant='contained'
                             sx={{ backgroundColor: 'rgba(53, 75, 152, 0.82)', px: 3 }}
@@ -122,26 +125,7 @@ function JobDetails() {
                             Apply
                         </Button>
                         <Dialog open={open} onClose={handleApplyFormClose}>
-                            <DialogTitle>Subscribe</DialogTitle>
-                            <DialogContent>
-                                <DialogContentText>
-                                    To subscribe to this website, please enter your email address here. We
-                                    will send updates occasionally.
-                                </DialogContentText>
-                                <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="name"
-                                    label="Email Address"
-                                    type="email"
-                                    fullWidth
-                                    variant="standard"
-                                />
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={handleApplyFormClose}>Cancel</Button>
-                                <Button onClick={handleApplyFormClose}>Subscribe</Button>
-                            </DialogActions>
+                                <JobApplyForm close={handleApplyFormClose} jobId={job._id}/>
                         </Dialog>
                     </Grid>
                 </Grid>
