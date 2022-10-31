@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import { protect } from '../middlewares/authMiddleware.js';
-import { getPostedJobs, getSavedJobs, postNewJob, saveJob, searchJobs } from '../controllers/jobControllers.js';
+import { getJobDetails, getPostedJobs, getSavedJobs, postNewJob, saveJob, searchJobs } from '../controllers/jobControllers.js';
 
 //search Jobs
 router.post('/search', protect, searchJobs)
@@ -11,6 +11,9 @@ router.post('/save', protect, saveJob)
 
 //get saved Jobs
 router.get('/save', protect, getSavedJobs)
+
+//get Job details
+router.get('/details/:id',protect,getJobDetails)
 
 //post new Job
 router.post('/post', protect, postNewJob)

@@ -61,10 +61,22 @@ export const getSavedJobs = async (req,res,next) => {
         let jobs = await User.findById(req.user._id).populate("savedJobs").select("savedJobs -_id")
         res.status(200).json([...jobs.savedJobs])
     } catch (error) {
-        console.log(error)
         next(error)
     }
 }
+
+//@route   GET /jobs/details/:id
+//@access  Private
+//@desc    Get Job Details
+export const getJobDetails = async (req,res,next)=>{
+    try {
+        let job = await Job.findById(req.params.id)
+        res.status(200).json(job)
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 //@route   POST /jobs/post
 //@access  Private

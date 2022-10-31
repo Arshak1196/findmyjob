@@ -1,12 +1,12 @@
 import { useReducer, useState } from 'react';
 import { Button, CircularProgress, InputAdornment, TextField } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
+import { useSelector } from 'react-redux';
 import { searchJobsReducer } from '../../functions/reducers';
 import { JOB_SEARCH_FAILURE, JOB_SEARCH_START, JOB_SEARCH_SUCCESS } from '../../functions/types';
 import * as JobsAPI from '../../api/JobRequests'
-import { useSelector } from 'react-redux';
-import SearchIcon from '@mui/icons-material/Search';
-import './JobSearch.css'
 import JobBox from '../JobBox/JobBox';
+import './JobSearch.css'
 
 
 function JobSearch() {
@@ -28,7 +28,6 @@ function JobSearch() {
       dispatch({ type: JOB_SEARCH_START });
       try {
         const result = await JobsAPI.searchJobs(key, user.token)
-        console.log(result)
         dispatch({ type: JOB_SEARCH_SUCCESS, payload: result.data })
       } catch (error) {
         dispatch({ type: JOB_SEARCH_FAILURE, payload: error.response.data.message })

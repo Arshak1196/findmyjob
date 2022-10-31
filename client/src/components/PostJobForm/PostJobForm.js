@@ -8,8 +8,10 @@ import Typography from '@mui/material/Typography';
 import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify'
 import { postNewJob } from '../../redux/postJob/postJobActions';
 import './PostJobForm.css'
+import { uploadImage } from '../../functions/uploadFile';
 
 const steps = ['Provide company Details', 'Provide Job Details'];
 
@@ -19,11 +21,14 @@ export default function PostJobForm() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [jobFor, setJobFor] = React.useState('Fresher');
   const [jobType, setJobType] = React.useState('Full Time')
+  const [image, setImage] = React.useState(null)
+  const [file, setFile] = React.useState(null)
+  const imageRef = React.useRef()
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.auth.user)
 
-  const { register, formState: { errors }, handleSubmit,reset } = useForm();
+  const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
   const handleChange = (event) => {
     setJobFor(event.target.value);
@@ -33,16 +38,25 @@ export default function PostJobForm() {
     setJobType(event.target.value);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
+    if (file) {
+      const path = "jobsLogo"
+      let formData = new FormData();
+      formData.append("path", path)
+      formData.append("file", file)
+      const res = await uploadImage(formData, user.token)
+      data.image=res.url
+      console.log(res)
+    }
     data.jobFor = jobFor
     data.jobType = jobType
     console.log(data)
-    dispatch(postNewJob(data,user.token))
+    dispatch(postNewJob(data, user.token))
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     reset()
   }
 
-  const handleNext = (data) => {
+  const handleNext =  (data) => {
     console.log(data)
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -55,12 +69,24 @@ export default function PostJobForm() {
     setActiveStep(0);
   };
 
-  const [image, setImage] = React.useState(null)
 
   const onImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
+    let files = event.target.files[0];
+    if (
+      files.type !== "image/jpeg" &&
+      files.type !== "image/png" &&
+      files.type !== "image/webp" &&
+      files.type !== "image/gif"
+    ) {
+      console.log('error')
+      toast.error(`${files.name} format is not supported`)
+      return
+    } else if (files.size > 1024 * 1024 * 5) {
+      toast.error(`${files.name} size is too large (max 5 mb allowed)`)
+      return
     }
+    setFile(event.target.files[0])
+    setImage(URL.createObjectURL(event.target.files[0]));
   }
 
   return (
@@ -141,8 +167,8 @@ export default function PostJobForm() {
               </Grid>
               <Grid item xs={6}>
                 <Grid item xs={12} sx={{ mb: 3, mt: 1, textAlign: 'center' }} >
-                  <img src={image} alt="preview-imag" className='image-preview' /><br />
-                  <input type="file" onChange={onImageChange} className="filetype" />
+                  <img src={image} alt="preview-img" className='image-preview' /><br />
+                  <input type="file" name="logo" onChange={onImageChange} ref={imageRef} className="filetype" />
                 </Grid>
               </Grid>
 
@@ -228,7 +254,7 @@ export default function PostJobForm() {
 
                 <Grid item xs={12} sx={{ mb: 3 }}>
                   <FormControl  >
-                    <FormLabel id="demo-row-radio-buttons-group-label">Job For</FormLabel>
+                    <FormLabel id="demo-row-radio-buttons-group-label">Job Type</FormLabel>
                     <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label"
                       value={jobType} onChange={handleChange2}  >
                       <FormControlLabel value="Full Time" control={<Radio />} label="Full Time" />
