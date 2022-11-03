@@ -60,9 +60,44 @@ const JobSchema = new Schema({
     image: {
         type: String
     },
-    applicationStatus:{
-        type: Array,
-    },
+    applicationStatus:[{
+        fname:{
+            type:String
+        },
+        lname:{
+            type:String
+        },
+        email:{
+            type:String
+        },
+        phone:{
+            type:Number
+        },
+        qualification:{
+            type:String
+        },
+        experience:{
+            type:Number
+        },
+        resume:{
+            type:String
+        },
+        userId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        },
+        appliedAt:{
+            type:Date,
+             default:new Date()
+        },
+        status:{
+            type:String,
+            default:'applied',
+            enum:['applied','approved','rejected']
+        }
+    }
+
+    ],
     isBlocked:{
         type:Boolean,
         default:false

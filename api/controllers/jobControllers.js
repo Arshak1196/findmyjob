@@ -3,6 +3,7 @@ import User from "../models/User.js"
 import {createError} from '../middlewares/error.js'
 
 
+
 //@route   POST /jobs/search
 //@access  Private
 //@desc    Search for Jobs
@@ -109,12 +110,31 @@ export const applyForJob = async (req,res,next)=>{
     }
 }
 
+//@route   GET /jobs/applied
+//@access  Private
+//@desc    Get Applied Jobs
+export const getAppliedJobs = async(req,res,next)=>{
+    try {
+        const jobs = await Job.aggregate([
+            {$unwind: '$applicationStatus'},
+            {$match:{
+                'applicationStatus.userId':req.user._id
+            }},
+            {$project:{
+                company:1,designation:1,applicationStatus:1
+            }}
+        ])
+        res.status(200).json(jobs)
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 //@route   POST /jobs/post
 //@access  Private
 //@desc    Post new job
 export const postNewJob = async (req, res, next) => {
-
     try {
         //Create Job
         const job =req.body;

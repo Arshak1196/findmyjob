@@ -38,7 +38,7 @@ function JobBox({ job }) {
                         <h4 className='designation'>{job.designation}</h4>
                         <p>{job.company}</p>
                         <p>{job.place},{job.state},{job.country}</p>
-                        <p>₹ {job.salaryMin} to {job.salaryMax} per month</p>
+                        <p>₹ {job.salaryMin} to {job.salaryMax} LPA</p>
                         <p>{job.jobType}</p>
                     </Grid>
                     <Grid item md={2} className='buttonside'>

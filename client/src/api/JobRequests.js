@@ -31,6 +31,12 @@ export const postApplyJob = ( details,token) => axios.post('/jobs/apply', detail
     }
 })
 
+export const getAppliedJobs=(token)=>axios.get('/jobs/applied',{
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
 export const createJob = (formData, token) => axios.post('/jobs/post', formData, {
     headers: {
         Authorization: `Bearer ${token}`

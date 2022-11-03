@@ -40,7 +40,7 @@ function ManageJobs() {
                             <ListItemText primary="Saved Jobs" onClick={()=>{navigate('/jobs/saved')}}/>
                         </ListItemButton>
                         <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemText primary="View My Applications" />
+                            <ListItemText primary="View My Applications" onClick={()=>{navigate('/jobs/appliedjobs')}}/>
                         </ListItemButton>
                     </List>
                 </Collapse>
