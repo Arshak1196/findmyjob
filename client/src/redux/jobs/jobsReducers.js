@@ -1,4 +1,4 @@
-import { FETCH_JOB_FAILURE, FETCH_JOB_START, FETCH_JOB_SUCCESS } from './jobsTypes'
+import { CLOSE_APPLIED_JOB, FETCH_JOB_FAILURE, FETCH_JOB_START, FETCH_JOB_SUCCESS, OPEN_APPLIED_JOB } from './jobsTypes'
 
 const INITIAL_STATE = {
     jobs: null,
@@ -23,12 +23,30 @@ const jobsReducer = (state = INITIAL_STATE, action) => {
         case FETCH_JOB_FAILURE:
             return {
                 ...state,
-                jobs:[],
+                jobs: [],
                 loading: false,
                 error: action.payload
             }
-        default :
-        return state;
+        case CLOSE_APPLIED_JOB:
+            state.jobs.map((job) => {
+                if (job._id === action.payload) {
+                    job.isOpen = false
+                }
+            })
+            return {
+                ...state,
+            }
+        case OPEN_APPLIED_JOB:
+            state.jobs.map((job) => {
+                if (job._id === action.payload) {
+                    job.isOpen = true
+                }
+            })
+            return {
+                ...state,
+            }
+        default:
+            return state;
     }
 }
 

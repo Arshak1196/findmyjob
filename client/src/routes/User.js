@@ -53,6 +53,7 @@ function User() {
 
                     <Route path='/post-job' element={<Jobs section='post' />} />
                     <Route path='/postedJobs' element={<Jobs section='posted' />} />
+                    <Route path='/postedJobs/:jobId' element={<Jobs section='applicants' />} />
                 </Route>
             </Routes>
         </>

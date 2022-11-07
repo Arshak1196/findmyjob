@@ -1,5 +1,5 @@
 import * as JobsAPI from '../../api/JobRequests'
-import { FETCH_APPLIED_JOBS_FAILURE, FETCH_APPLIED_JOBS_START, FETCH_APPLIED_JOBS_SUCCESS } from "./appliedJobsTypes"
+import {  FETCH_APPLIED_JOBS_FAILURE, FETCH_APPLIED_JOBS_START, FETCH_APPLIED_JOBS_SUCCESS } from "./appliedJobsTypes"
 
 
 
@@ -24,13 +24,14 @@ const fetchJobsFailure = error => {
 }
 
 
-export const fetchAppliedJobs = (token) =>async(dispatch)=>{
+export const fetchAppliedJobs = (token) => async (dispatch) => {
     dispatch(fetchJobsStart())
     try {
-        const jobs= await JobsAPI.getAppliedJobs(token)
+        const jobs = await JobsAPI.getAppliedJobs(token)
         dispatch(fetchJobsSuccess(jobs.data))
     } catch (error) {
         console.log(error)
         dispatch(fetchJobsFailure(error.response.data.message))
     }
 }
+

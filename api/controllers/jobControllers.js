@@ -19,7 +19,7 @@ export const searchJobs = async (req, res, next) => {
                 },
                 { userId: {$nin:[req.user?._id]}}
             ]
-        })
+        }).sort({createdAt:-1})
         res.json(jobs)
     } catch (error) {
         next(error)
@@ -162,3 +162,42 @@ export const getPostedJobs = async (req, res, next) => {
         next(error)
     }
 }
+
+//@route   GET /jobs/applicants/:id
+//@access  Private
+//@desc    Get Applicant details for each job
+export const getJobApplicants = async (req,res,next)=>{
+    try {
+        const applicants=await Job.findById(req.params.id).select('applicationStatus -_id')
+        res.status(200).json([...applicants.applicationStatus])
+    } catch (error) {
+        next(error)
+    }
+}
+
+//@route   POST /jobs/change_status/:id
+//@access  Private
+//@desc    Change status of applied Jobs
+export const changeJobStatus = async (req,res,next)=>{
+    try {
+        const job = await Job.findById(req.params.id)
+        if(!job){
+            return next(createError(400,'Invalid Job Id'))
+        }
+        if(job.isOpen){
+            await Job.findByIdAndUpdate(req.params.id,
+                {$set:{isOpen:false}}
+                )
+            res.status(200).json({'open':false})
+        }else{
+            await Job.findByIdAndUpdate(req.params.id,
+                {$set:{isOpen:true}}
+                )
+            res.status(200).json({'open':true})
+        }
+        res.status(200).json(job)
+    } catch (error) {
+        next(error)
+    }
+}
+

@@ -41,7 +41,7 @@ function AppliedJobs() {
       <div className='bgcWhite post-heading'>
         <h2>MANAGE YOUR APPLICATIONS</h2>
       </div>
-      <div className='bgcWhite post-heading'>
+      <div className='bgcWhite post-heading'  style={{ 'minHeight': '79%' }}>
         <DataTable columns={columns}
           data={appliedJobs}
           pagination

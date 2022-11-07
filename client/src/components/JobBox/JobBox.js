@@ -22,7 +22,8 @@ function JobBox({ job }) {
             }
             dispatch(fetchSavedJobs(user.token))
         } catch (error) {
-
+            toast.warn('Something went wrong.')
+            console.log(error)
         }
     }
     return (

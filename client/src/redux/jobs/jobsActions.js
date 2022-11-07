@@ -1,5 +1,5 @@
 import * as JobsAPI from '../../api/JobRequests'
-import { FETCH_JOB_FAILURE, FETCH_JOB_START, FETCH_JOB_SUCCESS } from './jobsTypes'
+import { CLOSE_APPLIED_JOB, FETCH_JOB_FAILURE, FETCH_JOB_START, FETCH_JOB_SUCCESS, OPEN_APPLIED_JOB } from './jobsTypes'
 
 const fetchStart = () => {
     return {
@@ -29,5 +29,19 @@ export const fetchJobs = (token) => async (dispatch) => {
     } catch (error) {
         console.log(error)
         dispatch(fetchFailure(error.response.data.message))
+    }
+}
+
+export const closeAppliedJob = id => {
+    return {
+        type: CLOSE_APPLIED_JOB,
+        payload: id
+    }
+}
+
+export const openAppliedJob = id => {
+    return {
+        type: OPEN_APPLIED_JOB,
+        payload: id
     }
 }

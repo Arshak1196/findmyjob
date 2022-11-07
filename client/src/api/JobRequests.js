@@ -25,13 +25,13 @@ export const getJobDetails = (token, jobId) => axios.get(`/jobs/details/${jobId}
     }
 })
 
-export const postApplyJob = ( details,token) => axios.post('/jobs/apply', details, {
+export const postApplyJob = (details, token) => axios.post('/jobs/apply', details, {
     headers: {
         Authorization: `Bearer ${token}`
     }
 })
 
-export const getAppliedJobs=(token)=>axios.get('/jobs/applied',{
+export const getAppliedJobs = (token) => axios.get('/jobs/applied', {
     headers: {
         Authorization: `Bearer ${token}`
     }
@@ -44,6 +44,18 @@ export const createJob = (formData, token) => axios.post('/jobs/post', formData,
 })
 
 export const fetchPostedJobs = (token) => axios.get('/jobs/postedjobs', {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+export const fetchJobApplicants = (jobId, token) => axios.get(`/jobs/applicants/${jobId}`, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+export const changeJobStatus = (jobId, token) => axios.post(`/jobs/change_status/${jobId}`, {
     headers: {
         Authorization: `Bearer ${token}`
     }

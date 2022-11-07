@@ -1,4 +1,4 @@
-import { FETCH_APPLIED_JOBS_FAILURE, FETCH_APPLIED_JOBS_START, FETCH_APPLIED_JOBS_SUCCESS } from "./appliedJobsTypes"
+import {  FETCH_APPLIED_JOBS_FAILURE, FETCH_APPLIED_JOBS_START, FETCH_APPLIED_JOBS_SUCCESS } from "./appliedJobsTypes"
 
 
 const INITIAL_STATE = {
@@ -28,6 +28,7 @@ const appliedJobsReducer = (state = INITIAL_STATE, action) => {
                 appliedJobs: [],
                 error: action.payload
             }
+        
         default:
             return state
     }

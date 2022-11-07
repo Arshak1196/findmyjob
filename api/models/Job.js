@@ -92,8 +92,8 @@ const JobSchema = new Schema({
         },
         status:{
             type:String,
-            default:'applied',
-            enum:['applied','approved','rejected']
+            default:'Applied',
+            enum:['Applied','Approved','Rejected']
         }
     }
 

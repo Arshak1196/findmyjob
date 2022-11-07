@@ -29,7 +29,6 @@ const UploadToCloudinary = async(file,path,next)=>{
                     removeTmp(file.tempFilePath);
                     return next(createError(400,'Upload File Failed'))
                 }
-                
                 resolve({
                     url:res.secure_url
                 })
