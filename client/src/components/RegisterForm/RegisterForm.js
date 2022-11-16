@@ -1,15 +1,20 @@
 import React from 'react'
 import { Button, Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {signup} from '../../redux/auth/authActions'
 import './RegisterForm.css'
+import { toast } from 'react-toastify'
 
 function RegisterForm() {
     const dispatch = useDispatch()
+    const err=useSelector(state=>state.auth.error)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
         dispatch(signup(data))
+        if(err){
+            toast.error(err)  
+          }
     }
     return (
         <>

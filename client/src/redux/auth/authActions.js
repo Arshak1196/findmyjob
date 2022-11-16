@@ -3,7 +3,9 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LOGOUT
+    LOGOUT,
+    SAVE_JOB,
+    UNSAVE_JOB
 } from './authTypes';
 
 export const loginStart = () => {
@@ -61,3 +63,16 @@ export const logOut = () => async (dispatch) => {
     dispatch(logout())
 }
 
+export const saveJob = id => {
+    return {
+        type: SAVE_JOB,
+        payload: id
+    }
+}
+
+export const unsaveJob = id => {
+    return {
+        type: UNSAVE_JOB,
+        payload: id
+    }
+}

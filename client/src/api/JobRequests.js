@@ -55,7 +55,7 @@ export const fetchJobApplicants = (jobId, token) => axios.get(`/jobs/applicants/
     }
 })
 
-export const changeJobStatus = (jobId, token) => axios.post(`/jobs/change_status/${jobId}`, {
+export const changeJobStatus = (jobId, token) => axios.post(`/jobs/job_status/${jobId}`, {
     headers: {
         Authorization: `Bearer ${token}`
     }

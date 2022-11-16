@@ -13,9 +13,9 @@ const port = process.env.PORT || 8000
 
 //routers
 import userRouter from './routes/user.js'
+import postRouter from './routes/posts.js'
 import jobRouter from './routes/jobs.js'
 import uploadRouter from './routes/upload.js'
-
 import adminRouter from './routes/admin.js'
 
 
@@ -28,6 +28,7 @@ app.use(fileUpload({
 }));
 
 app.use('/', userRouter)
+app.use('/post',postRouter)
 app.use('/jobs', jobRouter)
 app.use('/upload',uploadRouter)
 

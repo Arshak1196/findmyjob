@@ -13,19 +13,19 @@ function PostedJobs() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const handleJobStatus = async (id) => {
+    const handleJobStatus = async (id,token) => {
         try {
-            let status = await JobsAPI.changeJobStatus(id, user.token)
+            let status = await JobsAPI.changeJobStatus(id, token)
             if (status.data.open) {
                 toast.success('Job is open for Users')
                 dispatch(openAppliedJob(id))                
             } else {
                 toast.warn('Job is Closed, Users can`t further apply for this Job')
-                dispatch(closeAppliedJob(id))
+                dispatch(closeAppliedJob(id,user.token)) 
             }
         } catch (error) {
             console.log(error)
-            toast.warn(error.response.data.message)
+            toast.error(error.response.data.message)
         }
     }
 

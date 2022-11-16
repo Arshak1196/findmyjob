@@ -35,7 +35,10 @@ router.get('/postedjobs', protect, getPostedJobs)
 router.get('/applicants/:id', protect, getJobApplicants)
 
 //Change Applied Job status
-router.post('/change_status/:id', changeJobStatus)
+router.post('/job_status/:id', changeJobStatus)
+
+//Change Applicant Status
+router.post('/applicant_status/:id',protect,)
 
 
 export default router

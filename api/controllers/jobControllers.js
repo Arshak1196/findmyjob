@@ -201,3 +201,18 @@ export const changeJobStatus = async (req,res,next)=>{
     }
 }
 
+//@route   POST /jobs/applicant_status/:id
+//@access  Private
+//@desc    Change status of Applicants
+export const changeApplicantStatus =async (req,res,next)=>{
+    try {
+        const job=await Job.findById(req.params.id)
+        if(!job){
+            return next(createError(400,'Invalid Job Id'))
+        }
+        
+    } catch (error) {
+        next(error)
+    }
+}
+

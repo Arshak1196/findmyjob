@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './authTypes'
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, SAVE_JOB, UNSAVE_JOB } from './authTypes'
 
 const INITIAL_STATE = {
     user: null,
@@ -26,6 +26,16 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 error: action.payload,
+            }
+        case SAVE_JOB:
+            state.user.savedJobs.push(action.payload)
+            return {
+                ...state
+            }
+        case UNSAVE_JOB:
+            state.user.savedJobs=state.user.savedJobs.filter((val)=>val!==action.payload)
+            return {
+                ...state
             }
         case LOGOUT:
             localStorage.clear()

@@ -6,6 +6,7 @@ import {toast} from 'react-toastify'
 import * as JobsAPI from '../../api/JobRequests'
 import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
 import { useNavigate } from 'react-router-dom';
+import { saveJob, unsaveJob } from '../../redux/auth/authActions';
 
 function JobBox({ job }) {
     
@@ -16,8 +17,10 @@ function JobBox({ job }) {
         try {
             let save=await JobsAPI.saveJobs(id, user.token)
             if(save.data.saved){
+                dispatch(saveJob(id))
                 toast.success('Added to Saved Jobs')
             }else{
+                dispatch(unsaveJob(id))
                 toast.warn('Removed from Saved Jobs')
             }
             dispatch(fetchSavedJobs(user.token))
