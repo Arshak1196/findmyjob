@@ -3,10 +3,14 @@ import React from 'react'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import CommentIcon from '@mui/icons-material/Comment';
 import avatar from '../../images/sample.png'
-import postSamble from '../../images/postSample.jpg'
 import './Posts.css'
 
-function Posts() {
+function Posts({post}) {
+    // console.log(post.title)
+    // if(post.title){
+    //      post.title=post.title.replace(/\r\n/g,'<br>\n')
+    //     console.log(post.title)
+    // } 
     return (
         <div>
             <Grid className='bgcWhite postContainer'>
@@ -15,17 +19,14 @@ function Posts() {
                         <img className='postuserImage' src={avatar} alt='avatar' />
                     </Grid>
                     <Grid>
-                        <p className='pmry-txt'>UserName</p>
+                        <p className='pmry-txt'>{post.userId.name}</p>
                         <p className='time-txt'>time</p>
                     </Grid>
                 </Grid>
                 <Grid>
-                    <p className='post-caption'>
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered a
-                        lteration in some form, by injected humour, or randomised words which don't look even slightly
-                        believable. If you are going to use a passage of Lorem Ipsum
-                    </p>
-                    <img className='post-image' src={postSamble} alt='post' />
+                    <p className='post-caption'>{post.title}</p>
+                    {post.image && <img className='post-image' src={post.image} alt='post' /> }
+                    
                 </Grid>
                 <Grid>
                     <Button

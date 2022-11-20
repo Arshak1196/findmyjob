@@ -1,12 +1,11 @@
-import React from 'react'
 import { Grid } from '@mui/material'
 import NavBar from '../../components/NavBar/NavBar'
 import UserSidebar from '../../components/UserSidebar/UserSidebar'
 import PostSide from '../../components/PostSide/PostSide'
 import Footer from '../../components/Footer/Footer'
 
+
 function Home() {
-  
   return (
     <Grid container style={{ backgroundColor: 'rgba(0, 0, 0, 0.22)' }}>
       <NavBar />

@@ -22,8 +22,8 @@ function JobBox({ job }) {
             }else{
                 dispatch(unsaveJob(id))
                 toast.warn('Removed from Saved Jobs')
-            }
-            dispatch(fetchSavedJobs(user.token))
+            } 
+            dispatch(fetchSavedJobs(user.token)) 
         } catch (error) {
             toast.warn('Something went wrong.')
             console.log(error)

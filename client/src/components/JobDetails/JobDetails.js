@@ -10,8 +10,8 @@ import { fetchJobDetails } from '../../functions/reducers';
 import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
 import { FETCH_JOB_DETAIL_FAILURE, FETCH_JOB_DETAIL_START, FETCH_JOB_DETAIL_SUCCESS } from "../../functions/types";
 import JobApplyForm from "./JobApplyForm";
-import './JobDetails.css'
 import { saveJob, unsaveJob } from "../../redux/auth/authActions";
+import './JobDetails.css'
 
 
 function JobDetails() {

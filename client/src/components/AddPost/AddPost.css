@@ -8,3 +8,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.image_preview{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+
+  .image_preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
