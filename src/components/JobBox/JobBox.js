@@ -4,9 +4,9 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import {toast} from 'react-toastify'
 import * as JobsAPI from '../../api/JobRequests'
-import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
 import { useNavigate } from 'react-router-dom';
 import { saveJob, unsaveJob } from '../../redux/auth/authActions';
+import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
 
 function JobBox({ job }) {
     

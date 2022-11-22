@@ -3,7 +3,7 @@ import { Button, TextField } from '@mui/material'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useSelector } from 'react-redux';
 import * as PostsAPI from '../../api/PostRequest'
-import { createPostReducer } from '../../functions/postReducers';
+import {createPostReducer} from '../../functions/postReducers';
 import { CREATE_NEW_POST_FAILURE, CREATE_NEW_POST_START, CREATE_NEW_POST_SUCCESS } from '../../functions/types';
 import './AddPost.css'
 

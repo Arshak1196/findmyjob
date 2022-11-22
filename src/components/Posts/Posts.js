@@ -11,6 +11,7 @@ function Posts({post}) {
     //      post.title=post.title.replace(/\r\n/g,'<br>\n')
     //     console.log(post.title)
     // } 
+    const date = new Date(post.createdAt).toDateString()
     return (
         <div>
             <Grid className='bgcWhite postContainer'>
@@ -20,7 +21,7 @@ function Posts({post}) {
                     </Grid>
                     <Grid>
                         <p className='pmry-txt'>{post.userId.name}</p>
-                        <p className='time-txt'>time</p>
+                        <p className='time-txt'>{date}</p>
                     </Grid>
                 </Grid>
                 <Grid>
@@ -33,7 +34,7 @@ function Posts({post}) {
                         className='post-button'
                         startIcon={<ThumbUpOffAltIcon />}
                     >
-                        Like
+                        {` ${post.likes.length} likes`}
                     </Button>
                     <Button 
                     className='post-button'

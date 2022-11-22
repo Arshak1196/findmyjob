@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 const pages = [
     { name: 'CONNECTIONS', icon: <GroupIcon />, action: '/connections' },
-    { name: 'MESSAGE', icon: <ChatBubbleIcon /> },
+    // { name: 'MESSAGE', icon: <ChatBubbleIcon /> },
     { name: 'JOB', icon: <WorkIcon />, action: '/jobs' }]
 
 const NavBar = () => {
