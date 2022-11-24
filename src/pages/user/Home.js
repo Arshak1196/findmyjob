@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import NavBar from '../../components/NavBar/NavBar'
 import UserSidebar from '../../components/UserSidebar/UserSidebar'
-import PostSide from '../../components/PostSide/PostSide'
+import PostSide from '../../components/PostSection/PostSide/PostSide'
 import Footer from '../../components/Footer/Footer'
 
 

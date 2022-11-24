@@ -3,10 +3,10 @@ import { Button, Grid, Slide } from '@mui/material'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import {toast} from 'react-toastify'
-import * as JobsAPI from '../../api/JobRequests'
+import * as JobsAPI from '../../../api/JobRequests'
 import { useNavigate } from 'react-router-dom';
-import { saveJob, unsaveJob } from '../../redux/auth/authActions';
-import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
+import { saveJob, unsaveJob } from '../../../redux/auth/authActions';
+import { fetchSavedJobs } from '../../../redux/savedJobs/savedJobsActions';
 
 function JobBox({ job }) {
     

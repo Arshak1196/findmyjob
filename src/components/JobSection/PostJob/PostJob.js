@@ -1,4 +1,3 @@
-import React from 'react'
 import PostJobForm from '../PostJobForm/PostJobForm'
 import './PostJob.css'
 

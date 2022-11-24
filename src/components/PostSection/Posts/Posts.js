@@ -2,15 +2,16 @@ import { Button, Grid } from '@mui/material'
 import React from 'react'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import CommentIcon from '@mui/icons-material/Comment';
-import avatar from '../../images/sample.png'
+import avatar from '../../../images/sample.png'
 import './Posts.css'
 
-function Posts({post}) {
+function Posts({post,handlePostLIke}) {
     // console.log(post.title)
     // if(post.title){
     //      post.title=post.title.replace(/\r\n/g,'<br>\n')
     //     console.log(post.title)
     // } 
+
     const date = new Date(post.createdAt).toDateString()
     return (
         <div>
@@ -31,10 +32,11 @@ function Posts({post}) {
                 </Grid>
                 <Grid>
                     <Button
+                        onClick={()=>{handlePostLIke(post._id)}}
                         className='post-button'
                         startIcon={<ThumbUpOffAltIcon />}
                     >
-                        {` ${post.likes.length} likes`}
+                        { ` ${post.likes.length} likes`}
                     </Button>
                     <Button 
                     className='post-button'

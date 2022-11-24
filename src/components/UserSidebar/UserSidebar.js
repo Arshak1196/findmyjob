@@ -1,6 +1,6 @@
 import React from 'react'
 import ManageConnections from '../ManageConnections/ManageConnections'
-import ManageJobs from '../ManageJobs/ManageJobs'
+import ManageJobs from '../JobSection/ManageJobs/ManageJobs'
 import PendingRequests from '../PendingRequests/PendingRequests'
 import ProfileCard from '../ProfileCard/ProfileCard'
 import './UserSidebar.css'

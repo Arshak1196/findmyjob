@@ -5,12 +5,12 @@ import { Button, CircularProgress, Dialog, Grid } from '@mui/material'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { toast } from 'react-toastify'
-import * as JobsAPI from '../../api/JobRequests'
-import { fetchJobDetails } from '../../functions/reducers';
-import { fetchSavedJobs } from '../../redux/savedJobs/savedJobsActions';
-import { FETCH_JOB_DETAIL_FAILURE, FETCH_JOB_DETAIL_START, FETCH_JOB_DETAIL_SUCCESS } from "../../functions/types";
+import * as JobsAPI from '../../../api/JobRequests'
+import { fetchJobDetails } from '../../../functions/reducers';
+import { fetchSavedJobs } from '../../../redux/savedJobs/savedJobsActions';
+import { FETCH_JOB_DETAIL_FAILURE, FETCH_JOB_DETAIL_START, FETCH_JOB_DETAIL_SUCCESS } from "../../../functions/types";
 import JobApplyForm from "./JobApplyForm";
-import { saveJob, unsaveJob } from "../../redux/auth/authActions";
+import { saveJob, unsaveJob } from "../../../redux/auth/authActions";
 import './JobDetails.css'
 
 

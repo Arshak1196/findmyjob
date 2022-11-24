@@ -2,9 +2,9 @@ import { useReducer, useState } from 'react';
 import { Button, CircularProgress, InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
-import { searchJobsReducer } from '../../functions/reducers';
-import { JOB_SEARCH_FAILURE, JOB_SEARCH_START, JOB_SEARCH_SUCCESS } from '../../functions/types';
-import * as JobsAPI from '../../api/JobRequests'
+import { searchJobsReducer } from '../../../functions/reducers';
+import { JOB_SEARCH_FAILURE, JOB_SEARCH_START, JOB_SEARCH_SUCCESS } from '../../../functions/types';
+import * as JobsAPI from '../../../api/JobRequests'
 import JobBox from '../JobBox/JobBox';
 import './JobSearch.css'
 

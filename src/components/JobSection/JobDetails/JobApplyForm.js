@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form'
 import { Button, CircularProgress, DialogActions, DialogContent, DialogTitle, Grid, TextField } from '@mui/material'
 import { toast } from 'react-toastify'
-import * as JobsAPI from '../../api/JobRequests'
-import { applyJobReducer } from '../../functions/reducers';
-import { APPLY_JOB_FAILURE, APPLY_JOB_START, APPLY_JOB_SUCCESS } from '../../functions/types'
-import { uploadPdf } from '../../functions/uploadFile';
+import * as JobsAPI from '../../../api/JobRequests'
+import { applyJobReducer } from '../../../functions/reducers';
+import { APPLY_JOB_FAILURE, APPLY_JOB_START, APPLY_JOB_SUCCESS } from '../../../functions/types'
+import { uploadPdf } from '../../../functions/uploadFile';
 
 
 function JobApplyForm(props) {

@@ -9,9 +9,9 @@ import { CircularProgress, FormControl, FormControlLabel, FormLabel, Grid, Radio
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify'
-import { postNewJob } from '../../redux/postJob/postJobActions';
+import { postNewJob } from '../../../redux/postJob/postJobActions';
+import { uploadImage } from '../../../functions/uploadFile';
 import './PostJobForm.css'
-import { uploadImage } from '../../functions/uploadFile';
 
 const steps = ['Provide company Details', 'Provide Job Details'];
 

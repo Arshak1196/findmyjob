@@ -1,4 +1,4 @@
-import { CREATE_NEW_POST_FAILURE, CREATE_NEW_POST_START, CREATE_NEW_POST_SUCCESS, FETCH_LATEST_POSTS_FAILURE, FETCH_LATEST_POSTS_START, FETCH_LATEST_POSTS_SUCCESS } from "./types"
+import { CREATE_NEW_POST_FAILURE, CREATE_NEW_POST_START, CREATE_NEW_POST_SUCCESS, FETCH_LATEST_POSTS_FAILURE, FETCH_LATEST_POSTS_START, FETCH_LATEST_POSTS_SUCCESS, LIKE_POST, UNLIKE_POST } from "./types"
 
 export function createPostReducer(state, action) {
     switch (action.type) {
@@ -23,6 +23,7 @@ export function createPostReducer(state, action) {
                 error: action.payload,
                 success: false
             }
+
         default:
             return state
     }
@@ -49,6 +50,18 @@ export function fetchPostReducer(state, action) {
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        case LIKE_POST:
+            console.log(action.payload)
+            console.log(state)
+            state.posts.likes.push(action.payload)
+            return {
+                ...state,
+            }
+        case UNLIKE_POST:
+            state.likes = state.likes.filter((val) => val !== action.payload)
+            return {
+                ...state
             }
         default:
             return state

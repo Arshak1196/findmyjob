@@ -2,11 +2,11 @@ import React, { useEffect, useReducer } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import DataTable from 'react-data-table-component'
-import { CloudinaryContext, Transformation } from 'cloudinary-react'
-import * as JobsAPI from '../../api/JobRequests'
-import { fetchJobApplicantReducer } from '../../functions/reducers'
-import { FETCH_JOB_APPLICANTS_FAILURE, FETCH_JOB_APPLICANTS_START, FETCH_JOB_APPLICANTS_SUCCESS } from '../../functions/types'
-import { Button, CircularProgress } from '@mui/material'
+import {  CircularProgress } from '@mui/material'
+import { CloudinaryContext } from 'cloudinary-react'
+import * as JobsAPI from '../../../api/JobRequests'
+import { fetchJobApplicantReducer } from '../../../functions/reducers'
+import { FETCH_JOB_APPLICANTS_FAILURE, FETCH_JOB_APPLICANTS_START, FETCH_JOB_APPLICANTS_SUCCESS } from '../../../functions/types'
 
 function JobApplicants() {
     const { user } = useSelector((state) => state.auth)
@@ -78,6 +78,12 @@ function JobApplicants() {
         return <div className='bgcWhite post-heading'>
             <h2>Loading...</h2>
             <CircularProgress />
+        </div>
+    }
+
+    if (error) {
+        return <div className='bgcWhite post-heading'>
+            <h2>Something went wrong !</h2>
         </div>
     }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://findmyjobapi.herokuapp.com/post/'
+    baseURL: 'http://localhost:8000/post/'
 });
 
 
@@ -13,4 +13,6 @@ export const getLatestPosts = (token) => instance.get('/posts', {
     headers: { Authorization: `Bearer ${token}` }
 });
 
-
+export const handleLike = (postId,token) =>instance.post(`/like/${postId}`,{},{
+    headers: { Authorization: `Bearer ${token}` }
+})

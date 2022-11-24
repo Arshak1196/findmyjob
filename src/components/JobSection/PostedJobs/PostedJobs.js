@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify'
 import { Button, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import * as JobsAPI from '../../api/JobRequests'
-import { closeAppliedJob, openAppliedJob } from '../../redux/jobs/jobsActions';
+import * as JobsAPI from '../../../api/JobRequests'
+import { closeAppliedJob, openAppliedJob } from '../../../redux/jobs/jobsActions';
 
 function PostedJobs() {
     const { user } = useSelector((state) => state.auth)
