@@ -2,3 +2,6 @@
     min-height: 100vh;
 }
 
+.MuiContainer-root::-webkit-scrollbar{
+    display: none;
+}

@@ -38,11 +38,10 @@ function PostSide() {
   const handlePostLIke = async (postId) => {
     try {
       let result = await PostsAPI.handleLike(postId, user.token)
-      console.log(result)
       if (result.data.liked) {
-        dispatch({ type: LIKE_POST, payload: postId })
+        dispatch({ type: LIKE_POST, payload: {postId,userId:user._id} })
       } else {
-        dispatch({ type: UNLIKE_POST, payload: postId })
+        dispatch({ type: UNLIKE_POST, payload: {postId,userId:user._id} })
       }
     } catch (error) {
       console.log(error)

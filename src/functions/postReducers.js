@@ -52,14 +52,22 @@ export function fetchPostReducer(state, action) {
                 error: action.payload
             }
         case LIKE_POST:
-            console.log(action.payload)
-            console.log(state)
-            state.posts.likes.push(action.payload)
+            state.posts=state.posts.map((post)=>{
+                if(post._id===action.payload.postId){
+                    post.likes.push(action.payload.userId)
+                }
+                return post
+            })
             return {
                 ...state,
             }
         case UNLIKE_POST:
-            state.likes = state.likes.filter((val) => val !== action.payload)
+            state.posts=state.posts.map((post)=>{
+                if(post._id===action.payload.postId){
+                    post.likes=post.likes.filter((like)=>like!==action.payload.userId)
+                }
+                return post
+            })
             return {
                 ...state
             }

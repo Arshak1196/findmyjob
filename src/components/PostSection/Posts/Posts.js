@@ -1,11 +1,14 @@
 import { Button, Grid } from '@mui/material'
 import React from 'react'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CommentIcon from '@mui/icons-material/Comment';
 import avatar from '../../../images/sample.png'
 import './Posts.css'
+import { useSelector } from 'react-redux';
 
 function Posts({post,handlePostLIke}) {
+    const { user } = useSelector((state) => state.auth) 
     // console.log(post.title)
     // if(post.title){
     //      post.title=post.title.replace(/\r\n/g,'<br>\n')
@@ -34,7 +37,7 @@ function Posts({post,handlePostLIke}) {
                     <Button
                         onClick={()=>{handlePostLIke(post._id)}}
                         className='post-button'
-                        startIcon={<ThumbUpOffAltIcon />}
+                        startIcon={post.likes.includes(user._id)?<ThumbUpAltIcon/>:<ThumbUpOffAltIcon/>}
                     >
                         { ` ${post.likes.length} likes`}
                     </Button>
