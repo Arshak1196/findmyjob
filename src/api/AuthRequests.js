@@ -1,4 +1,9 @@
 import axios from 'axios'
 
-export const login =(formData)=>axios.post('/login',formData)
-export const register =(formData)=>axios.post('/register',formData)
+const instance = axios.create({
+    baseURL: 'https://findmyjobapi.herokuapp.com/'
+});
+
+export const login =(formData)=>instance.post('/login',formData)
+
+export const register =(formData)=>instance.post('/register',formData)
